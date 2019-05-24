@@ -1,0 +1,173 @@
+How to modify a file:
+
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ vi file1.txt
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   file2.txt
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   file1.txt
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+  perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git add file1.txt
+warning: LF will be replaced by CRLF in file1.txt.
+The file will have its original line endings in your working directory
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+        modified:   file1.txt
+        new file:   file2.txt
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file3.txt
+========================================================================
+How to commit all files:
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git commit -m "Two Files Changed"
+[master 856e686] Two Files Changed
+ 2 files changed, 4 insertions(+)
+ create mode 100644 file2.txt
+===========================================================================
+how to add all files?
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git add .
+============================================================================
+how to add mutiple files?
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git add file4.txt file5.txt
+=============================================================================
+how to commit few files?
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git commit -m "file 4" file4.txt
+[master 98e89a8] file 4
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file4.txt
+ =============================================================================
+ how add directory?
+ perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ mkdir src
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ touch src/src1.txt
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        src/
+nothing added to commit but untracked files present (use "git add" to track)
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git add .
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git satus
+git: 'satus' is not a git command. See 'git --help'.
+
+The most similar command is
+        status
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   src/src1.txt
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git add .
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git commit -m "add directory"
+[master 376f8b6] add directory
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 src/src1.txt
+==============================================================================
+Rename a file: wrong way
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ mv file1.txt file22.txt
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+        deleted:    file1.txt
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file22.txt
+no changes added to commit (use "git add" and/or "git commit -a")
+
+correct way:
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git mv file2.txt file12.txt
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+        renamed:    file2.txt -> file12.txt
+		Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    file1.txt
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        file22.txt
+===========================================================
+Deleting File:
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ ls
+file1.txt  file12.txt  file3.txt  file4.txt  file5.txt  file6.txt  src/
+
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git rm file6.txt
+rm 'file6.txt'
+
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ ls
+file1.txt  file12.txt  file3.txt  file4.txt  file5.txt  src/
+
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        deleted:    file6.txt
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git commit -m "file deleted"
+[master c0d0dbc] file deleted
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 file6.txt
+================================================================
+how to switch to oldr version
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 (master)
+$ git log --oneline
+c0d0dbc (HEAD -> master) file deleted
+8f0a1d6 moving
+376f8b6 add directory
+af9b27d all
+98e89a8 file 4
+856e686 Two Files Changed
+bda7118 adding first file
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 ((c0d0dbc...))
+$ git checkout 8f0a1d6
+Previous HEAD position was c0d0dbc file deleted
+HEAD is now at 8f0a1d6 moving
+perip@DESKTOP-9JD86J6 MINGW64 /d/satgit/git1 ((8f0a1d6...))
+$ ls
+file1.txt  file12.txt  file3.txt  file4.txt  file5.txt  file6.txt  src/
+
